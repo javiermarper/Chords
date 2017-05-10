@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <script src="d3.v3.min.js"></script>
+  <script src="flowChord.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    #flow .flows {
+      opacity: .6;
+    }
+    #flow .chord-hover {
+      position: absolute;
+      visibility: hidden;
+      background: #EEE;
+      padding: 15px 25px 25px 15px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+    </style>
+  <div id="flow">
+	<h1><b>Procedencia alumnos Q1</b></h1>
+  </div>
+
+  <script>
+  var colors = d3.scale.ordinal().range(["#AAA", "steelblue", "green", "orange", "brown"]);
+  var hoverHtml = {'ADE': '<h1>ADE</h1>Administración y Dirección de Empresas', 
+      'ECO': '<h1>ECO</h1>Economía', 
+      'EMP': '<h1>EMP</h1>Ciencias Empresariales-Management',
+      'IBE': '<h1>IBE</h1>International Business Economics',
+      'ESA': '<h1>Cuartil 4</h1>Ingenieria de Sistemas Audiovisuales', 
+      'TEL': '<h1>Cuartil 3</h1>Ingenieria Telemática', 
+      'INF': '<h1>Cuartil 2</h1>Ingenieria en Informática',
+      'BIO': '<h1>Cuartil 1</h1>Ingenieria Biomédica'};
+  var chordDiagram = d3.elts.flowChord().colors(colors).hoverHtml(hoverHtml).rimWidth(30);
+  var data = [['Grado','Frederic Mistral-Tecnic Eulalia','Institucio Cultural del CIC','Lycee Francais de Barcelone','Betania-Patmos','Escola Pia de Mataro','Sant Ignasi','Casp-Sagrat Cor de Jesus'],
+['ESA', 0.5, 0, 0, 0,0.5,0,0], ['TEL', 0,0,0,0,0,0,0],['INF', 0,0,0,0,0,0,0],['BIO', 0.25,0.75,0,0,0,0,0],
+['ADE',0.20, 0.13, 0.00, 0.07, 0.27, 0.13, 0.20],['ECO',0.27, 0.00, 0.45, 0.00, 0.09, 0.00, 0.18],['EMP',0,0,0,0.5,0,0.5,0],['IBE',0.21, 0.18, 0.13, 0.18, 0.08, 0.15, 0.08]]
+  d3.select("#flow").datum(data).call(chordDiagram);
+
+  </script>
+
+</body>

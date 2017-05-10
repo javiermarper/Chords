@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <script src="d3.v3.min.js"></script>
+  <script src="flowChord.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+    #flow .flows {
+      opacity: .6;
+    }
+    #flow .chord-hover {
+      position: absolute;
+      visibility: hidden;
+      background: #EEE;
+      padding: 15px 25px 25px 15px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+    </style>
+  <div id="flow">
+	<h1><b>TOP10 TOTAL</b></h1>
+  </div>
+
+  <script>
+  var colors = d3.scale.ordinal().range(["#AAA", "steelblue", "green", "orange", "brown"]);
+  var hoverHtml = {'ADE': '<h1>ADE</h1>Administración y Dirección de Empresas', 
+      'ECO': '<h1>ECO</h1>Economía', 
+      'EMP': '<h1>EMP</h1>Ciencias Empresariales-Management',
+      'IBE': '<h1>IBE</h1>International Business Economics',
+      'ESA': '<h1>Cuartil 4</h1>Ingeniería de Sistemas Audiovisuales', 
+      'TEL': '<h1>Cuartil 3</h1>Ingeniería Telemática', 
+      'INF': '<h1>Cuartil 2</h1>Ingeniería en Informática',
+      'BIO': '<h1>Cuartil 1</h1>Ingeniería Biomédica'}
+  var chordDiagram = d3.elts.flowChord().colors(colors).hoverHtml(hoverHtml).rimWidth(30);
+  var data = [['Grado','Frederic Mistral-Tecnic Eulalia','Institucio Cultural del C.I.C.','El Clot','Sant Ignasi','Casp-Sagrat Cor de Jesus','Lycee Francais de Barcelone','Escola Pia de Mataro','Sunion','Betania-Patmos','Sagrat Cor-Diputacio'],
+['ESA', 0.08,0.00,0.25,0.03,0.08,0.03,0.14,0.25,0.00,0.14], ['TEL', 0.12,0.18,0.47,0.00,0.06,0.00,0.06,0.06,0.00,0.06],['INF', 0.02,0.02,0.47,0.04,0.10,0.00,0.10,0.10,0.00,0.14],['BIO',0.07,0.29,0.00,0.00,0.14,0.07,0.00,0.43,0.00,0.00],
+['ADE',0.17,0.13,0.03,0.09,0.11,0.11,0.17,0.04,0.10,0.06],['ECO',0.18,0.14,0.05,0.14,0.12,0.15,0.03,0.08,0.08,0.05],['EMP',0.14,0.14,0.05,0.13,0.06,0.07,0.11,0.04,0.14,0.13],['IBE',0.19,0.16,0.03,0.15,0.07,0.10,0.07,0.10,0.12,0.01]]
+  d3.select("#flow").datum(data).call(chordDiagram);
+
+  </script>
+
+</body>
